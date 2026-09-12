@@ -1,0 +1,32 @@
+[
+  {
+    "fromState": "APPLIED",
+    "action": "VERIFY",
+    "toState": "PENDING_APPROVAL",
+    "allowedRoles": ["VERIFIER"]
+  },
+  {
+    "fromState": "APPLIED",
+    "action": "SEND_BACK",
+    "toState": "APPLIED",
+    "allowedRoles": ["VERIFIER"]
+  },
+  {
+    "fromState": "APPLIED",
+    "action": "CANCEL",
+    "toState": "CANCELLED",
+    "allowedRoles": ["APPLICANT"]
+  },
+  {
+    "fromState": "PENDING_APPROVAL",
+    "action": "APPROVE",
+    "toState": "APPROVED",
+    "allowedRoles": ["APPROVER"]
+  },
+  {
+    "fromState": "PENDING_APPROVAL",
+    "action": "REJECT",
+    "toState": "REJECTED",
+    "allowedRoles": ["APPROVER"]
+  }
+]
