@@ -1,0 +1,52 @@
+# Main Spring Boot configuration file.
+# All values can be overridden by environment variables at deploy time (see the SPRING_DATASOURCE_* names below).
+spring:
+  application:
+    name: road-cutting-permission
+
+  datasource:
+    # Connection details for the PostgreSQL database. Override via env vars in real deployments.
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/rcp}
+    username: ${SPRING_DATASOURCE_USERNAME:rcp}
+    password: ${SPRING_DATASOURCE_PASSWORD:rcp}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    # IMPORTANT: never let Hibernate manage the schema. Flyway migrations are the single source of truth.
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+
+  jackson:
+    # Dates as ISO-8601 strings (e.g. "2026-03-02"), not as arrays of numbers.
+    serialization:
+      write-dates-as-timestamps: false
+
+server:
+  port: ${SERVER_PORT:8080}
+
+# Application-specific configuration, injected into RcpProperties.
+rcp:
+  # Path to the rate configuration JSON, loaded by JsonRateConfigurationProvider at startup.
+  rates-config-path: classpath:rates.json
+  # City -> application-number prefix. Extend this map when a new tenant/city is onboarded.
+  tenant-prefixes:
+    dehradun: DDN
+    haridwar: HRD
+  search:
+    default-limit: 20
+    # Server-side hard cap so a caller cannot request an unbounded result set.
+    max-limit: 100
+
+logging:
+  level:
+    com.rcp: INFO

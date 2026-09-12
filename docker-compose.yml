@@ -1,0 +1,19 @@
+# Brings up ONLY a local PostgreSQL instance for development - not a full one-command "docker
+# compose up brings up Postgres, API and portal" setup (that is the Core spec's stretch goal, which
+# was not attempted - see README.md "What we deliberately did not build"). Run this, then start the
+# backend and frontend separately per README.md "How to run".
+version: "3.8"
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: rcp
+      POSTGRES_USER: rcp
+      POSTGRES_PASSWORD: rcp
+    ports:
+      - "5432:5432"
+    volumes:
+      - rcp_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  rcp_postgres_data:
