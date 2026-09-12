@@ -1,0 +1,53 @@
+{
+  "defaults": {
+    "roadTypes": [
+      {
+        "code": "BT",
+        "name": "Bituminous",
+        "restorationRatePerSqm": 1200,
+        "permissionRatePerSqmPerDay": 15,
+        "minSecurityDeposit": 5000,
+        "active": true
+      },
+      {
+        "code": "CC",
+        "name": "Cement Concrete",
+        "restorationRatePerSqm": 2100,
+        "permissionRatePerSqmPerDay": 25,
+        "minSecurityDeposit": 10000,
+        "active": true
+      },
+      {
+        "code": "WBM",
+        "name": "Water Bound Macadam",
+        "restorationRatePerSqm": 650,
+        "permissionRatePerSqmPerDay": 8,
+        "minSecurityDeposit": 2000,
+        "active": true
+      },
+      {
+        "code": "KUTCHA",
+        "name": "Kutcha",
+        "restorationRatePerSqm": 150,
+        "permissionRatePerSqmPerDay": 3,
+        "minSecurityDeposit": 500,
+        "active": false
+      }
+    ],
+    "urgencyThresholdDays": 3,
+    "urgencySurchargePercent": 10,
+    "securityDepositPercent": 25
+  },
+  "tenants": {
+    "dehradun": {},
+    "haridwar": {
+      "roadTypes": [
+        {
+          "code": "BT",
+          "permissionRatePerSqmPerDay": 20,
+          "minSecurityDeposit": 7500
+        }
+      ]
+    }
+  }
+}
